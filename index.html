@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rd Photography | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111;
+            color: #f0f0f0;
+        }
+        /* Style for the active nav link */
+        .nav-link.active {
+            color: #fff;
+            position: relative;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #38bdf8; /* light blue */
+        }
+        /* Style for active mobile nav link */
+        .mobile-nav-link.active {
+            color: #38bdf8;
+        }
+        /* Header scroll effect */
+        .header-scrolled {
+            background-color: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        /* Hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Gallery item animation */
+        .gallery-item {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .gallery-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        /* Lightbox styling */
+        .lightbox {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 80vh;
+            animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        /* Scroll to top button */
+        #scrollTopBtn {
+            transition: opacity 0.3s, transform 0.3s;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold tracking-wider text-white">Rd Photography</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-300 hover:text-white transition active" data-section="home">Home</a>
+                <a href="#work" class="nav-link text-gray-300 hover:text-white transition" data-section="work">Work</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white transition" data-section="about">About</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white transition" data-section="contact">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none z-50">
+                <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+                 <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-95 z-40 hidden flex-col items-center justify-center space-y-8 text-2xl">
+        <a href="#home" class="mobile-nav-link text-gray-300 hover:text-white transition active" data-section="home">Home</a>
+        <a href="#work" class="mobile-nav-link text-gray-300 hover:text-white transition" data-section="work">Work</a>
+        <a href="#about" class="mobile-nav-link text-gray-300 hover:text-white transition" data-section="about">About</a>
+        <a href="#contact" class="mobile-nav-link text-gray-300 hover:text-white transition" data-section="contact">Contact</a>
+    </div>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="h-screen w-full flex items-center justify-center bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop');">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="text-center z-10 p-4">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight">Capturing Moments, Creating Memories</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">Timeless photography that tells your unique story. Based in Rajkot, available worldwide.</p>
+                <a href="#work" class="bg-sky-500 text-white font-semibold py-3 px-8 rounded-full hover:bg-sky-600 transition-all duration-300 text-lg">View My Work</a>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="py-20 md:py-32 bg-neutral-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white">My Portfolio</h2>
+                    <p class="text-gray-400 mt-2">A selection of my favorite projects.</p>
+                </div>
+
+                <!-- Filters -->
+                <div id="filters" class="flex justify-center flex-wrap gap-2 md:gap-4 mb-12">
+                    <button class="filter-btn bg-neutral-800 text-white py-2 px-5 rounded-full active" data-filter="all">All</button>
+                    <button class="filter-btn bg-neutral-800 text-white py-2 px-5 rounded-full" data-filter="weddings">Weddings</button>
+                    <button class="filter-btn bg-neutral-800 text-white py-2 px-5 rounded-full" data-filter="portraits">Portraits</button>
+                    <button class="filter-btn bg-neutral-800 text-white py-2 px-5 rounded-full" data-filter="nature">Nature</button>
+                    <button class="filter-btn bg-neutral-800 text-white py-2 px-5 rounded-full" data-filter="travel">Travel</button>
+                </div>
+                
+                <!-- Gallery -->
+                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                    <!-- Images will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=1887&auto=format&fit=crop" alt="Photographer portrait" class="rounded-lg shadow-2xl w-full h-auto object-cover">
+                    </div>
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h2 class="text-4xl font-bold text-white mb-4">About Me</h2>
+                        <h3 class="text-2xl text-sky-400 font-semibold mb-6">Hello, I'm RD.</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">I am a passionate photographer based in the vibrant city of Rajkot, Gujarat. For over a decade, I've been driven by a single goal: to capture the genuine emotions and fleeting moments that make life so beautiful.</p>
+                        <p class="text-gray-300 mb-4 leading-relaxed">My style is a blend of modern photojournalism and fine-art portraiture. I believe in telling stories through my lens, creating images that are not just seen, but felt. Whether it's the tearful joy of a wedding or the quiet majesty of a mountain peak, I strive to create art that is both authentic and timeless.</p>
+                        <p class="text-gray-300 leading-relaxed">Let's connect and create something beautiful together.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 bg-neutral-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-4">Get In Touch</h2>
+                <p class="text-gray-400 mb-12 max-w-2xl mx-auto">Have a project in mind? I'd love to hear from you. Fill out the form below or email me directly.</p>
+                <div id="contact-form-container" class="max-w-xl mx-auto">
+                    <form id="contact-form" class="space-y-6 text-left">
+                        <div>
+                            <label for="name" class="sr-only">Name</label>
+                            <input type="text" name="name" id="name" placeholder="Your Name" required class="w-full bg-neutral-800 border-neutral-700 text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
+                        </div>
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Your Email" required class="w-full bg-neutral-800 border-neutral-700 text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
+                        </div>
+                        <div>
+                            <label for="message" class="sr-only">Message</label>
+                            <textarea name="message" id="message" rows="5" placeholder="Your Message" required class="w-full bg-neutral-800 border-neutral-700 text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-sky-500 text-white font-semibold py-3 px-8 rounded-full hover:bg-sky-600 transition-all duration-300 text-lg">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                 <div class="mt-16">
+                    <p class="text-lg text-gray-300">Or reach out directly:</p>
+                    <a href="mailto:contact@rdphotography.com" class="text-sky-400 text-xl hover:text-sky-300 transition">contact@rdphotography.com</a>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-950 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 Rd Photography. All Rights Reserved.</p>
+             <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">Facebook</a>
+                <a href="#" class="hover:text-white transition">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center p-4 lightbox">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+        <button id="lightbox-prev" class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 text-white text-4xl md:text-5xl">&larr;</button>
+        <button id="lightbox-next" class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 text-white text-4xl md:text-5xl">&rarr;</button>
+        <img id="lightbox-img" src="" alt="Portfolio Image" class="lightbox-img object-contain rounded-lg shadow-2xl">
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="fixed bottom-5 right-5 bg-sky-500 text-white p-3 rounded-full shadow-lg opacity-0 transform translate-y-4 hover:bg-sky-600 focus:outline-none z-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Sample Gallery Data ---
+            const images = [
+                { src: 'https://images.unsplash.com/photo-1519741497674-6114d186b25c?q=80&w=2070&auto=format&fit=crop', category: 'weddings', alt: 'Wedding ceremony' },
+                { src: 'https://images.unsplash.com/photo-1587318634139-bbc10acc1340?q=80&w=1887&auto=format&fit=crop', category: 'portraits', alt: 'Woman portrait' },
+                { src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1948&auto=format&fit=crop', category: 'nature', alt: 'Misty forest' },
+                { src: 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?q=80&w=2070&auto=format&fit=crop', category: 'travel', alt: 'Coastal rock formations' },
+                { src: 'https://images.unsplash.com/photo-1597157639193-e99336187883?q=80&w=1887&auto=format&fit=crop', category: 'portraits', alt: 'Man portrait' },
+                { src: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop', category: 'weddings', alt: 'Bride getting ready' },
+                { src: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=1950&auto=format&fit=crop', category: 'nature', alt: 'Green hills under blue sky' },
+                { src: 'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=2070&auto=format&fit=crop', category: 'travel', alt: 'Person in a canoe' },
+                { src: 'https://images.unsplash.com/photo-1529101091261-77b58c1d9083?q=80&w=1887&auto=format&fit=crop', category: 'weddings', alt: 'Wedding rings' },
+                { src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1888&auto=format&fit=crop', category: 'portraits', alt: 'Smiling woman portrait' },
+                { src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1887&auto=format&fit=crop', category: 'nature', alt: 'Waterfall' },
+                { src: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop', category: 'travel', alt: 'Lake and mountains' },
+            ];
+
+            const gallery = document.getElementById('gallery');
+            const filters = document.getElementById('filters');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            let currentImages = [];
+            let currentIndex = 0;
+
+            function renderGallery(filter = 'all') {
+                gallery.innerHTML = '';
+                currentImages = (filter === 'all') ? images : images.filter(img => img.category === filter);
+                
+                currentImages.forEach((image, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item group cursor-pointer relative';
+                    item.dataset.category = image.category;
+                    item.dataset.index = index;
+                    
+                    item.innerHTML = `
+                        <img src="${image.src}" alt="${image.alt}" class="w-full h-full object-cover rounded-lg aspect-square">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                            <p class="text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 capitalize">${image.category}</p>
+                        </div>
+                    `;
+                    gallery.appendChild(item);
+                });
+
+                // Trigger animations
+                setTimeout(() => {
+                    document.querySelectorAll('.gallery-item').forEach(item => {
+                        item.classList.add('visible');
+                    });
+                }, 100);
+
+                // Add click listeners for lightbox
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        currentIndex = parseInt(item.dataset.index);
+                        openLightbox();
+                    });
+                });
+            }
+
+            // --- Lightbox Logic ---
+            const openLightbox = () => {
+                updateLightboxImage();
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeLightbox = () => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            };
+
+            const updateLightboxImage = () => {
+                if (currentImages.length > 0) {
+                    lightboxImg.src = currentImages[currentIndex].src;
+                    lightboxImg.alt = currentImages[currentIndex].alt;
+                }
+            };
+            
+            const showNextImage = () => {
+                currentIndex = (currentIndex + 1) % currentImages.length;
+                updateLightboxImage();
+            };
+
+            const showPrevImage = () => {
+                currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+                updateLightboxImage();
+            };
+
+            document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox() });
+            document.getElementById('lightbox-next').addEventListener('click', showNextImage);
+            document.getElementById('lightbox-prev').addEventListener('click', showPrevImage);
+            
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('hidden')) {
+                    if (e.key === 'Escape') closeLightbox();
+                    if (e.key === 'ArrowRight') showNextImage();
+                    if (e.key === 'ArrowLeft') showPrevImage();
+                }
+            });
+
+            // --- Filter Logic ---
+            filters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    document.querySelector('.filter-btn.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    renderGallery(e.target.dataset.filter);
+                }
+            });
+
+            // Initial gallery render
+            renderGallery();
+            
+            // --- Header & Navigation Logic ---
+            const header = document.getElementById('main-header');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const sections = document.querySelectorAll('main section');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+                 // Scroll to top button visibility
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.remove('opacity-0', 'translate-y-4');
+                } else {
+                    scrollTopBtn.classList.add('opacity-0', 'translate-y-4');
+                }
+            });
+
+            // --- Mobile Menu Toggle Functionality ---
+            const toggleMobileMenu = () => {
+                mobileMenu.classList.toggle('hidden');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
+                document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
+            };
+
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+            // --- Smooth scrolling for all nav links ---
+            const allNavLinks = [...navLinks, ...mobileNavLinks];
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                    if (!mobileMenu.classList.contains('hidden')) {
+                         toggleMobileMenu();
+                    }
+                });
+            });
+
+            // --- Active nav link on scroll ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        // Update both desktop and mobile links
+                        navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === id));
+                        mobileNavLinks.forEach(link => link.classList.toggle('active', link.dataset.section === id));
+                    }
+                });
+            }, { rootMargin: '-40% 0px -60% 0px' });
+
+            sections.forEach(section => observer.observe(section));
+            
+            // --- Contact Form Submission ---
+            const contactForm = document.getElementById('contact-form');
+            const formContainer = document.getElementById('contact-form-container');
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                formContainer.innerHTML = `
+                    <div class="text-center bg-neutral-800 p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold text-white mb-2">Thank You!</h3>
+                        <p class="text-gray-300">Your message has been sent. I will get back to you shortly.</p>
+                    </div>
+                `;
+            });
+            
+            // --- Scroll to Top Button Logic ---
+            scrollTopBtn.addEventListener('click', () => {
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
+
